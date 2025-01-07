@@ -4,8 +4,8 @@ from pygame.locals import *
 pygame.init()
 mainClock = pygame.time.Clock()
 
-WINDOWWIDTH = 1600
-WINDOWHEIGHT = 950
+WINDOWWIDTH = 1280
+WINDOWHEIGHT = 720
 windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
 pygame.display.set_caption('The Far Lands')
 
@@ -17,16 +17,16 @@ BLUE = (0, 0, 255)
 BROWN = (60, 30, 0)
 
 
-PLAYER_WIDTH = 32*2
-PLAYER_HEIGHT = 32*2
-player = pygame.Rect(300, 100, PLAYER_WIDTH, PLAYER_HEIGHT)
+PLAYER_WIDTH = 32
+PLAYER_HEIGHT = 32
+player = pygame.Rect(WINDOWWIDTH//2-PLAYER_HEIGHT//2, WINDOWHEIGHT//2-PLAYER_HEIGHT//2, PLAYER_WIDTH, PLAYER_HEIGHT)
 
 moveLeft = False
 moveRight = False
 moveUp = False
 moveDown = False
 
-MOVESPEED = 1
+MOVESPEED = 5
 
 
 while True:
@@ -47,35 +47,28 @@ while True:
             if event.key == K_DOWN or event.key == K_s:
                 moveUp = False
                 moveDown = True
-        if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-            if event.key == K_LEFT or event.key == K_a:
-                moveLeft = False
-            if event.key == K_RIGHT or event.key == K_d:
-                moveRight = False
-            if event.key == K_UP or event.key == K_w:
-                moveUp = False
-            if event.key == K_DOWN or event.key == K_s:
-                moveDown = False
-            if event.key == K_x:
-                player.top = random.randint(0, WINDOWHEIGHT - player.height)
-                player.left = random.randint(0, WINDOWWIDTH - player.width)
+        if event.type == KEYUP:
+            moveLeft = False
+            moveRight = False
+            moveUp = False
+            moveDown = False
             
 
     windowSurface.fill(GREEN)
 
-    if moveDown and player.bottom<WINDOWHEIGHT:
+    if moveDown:
         player.top += MOVESPEED
-    if moveUp and player.top>0:
+    if moveUp:
         player.top -= MOVESPEED    
-    if moveLeft and player.left>0:
+    if moveLeft:
         player.left -= MOVESPEED
-    if moveRight and player.right<WINDOWWIDTH:
+    if moveRight:
         player.right += MOVESPEED
 
     pygame.draw.rect(windowSurface, BLUE, player)
         
     pygame.display.update()
-    mainClock.tick(10000000)
+    mainClock.tick(60)
