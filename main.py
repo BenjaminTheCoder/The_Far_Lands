@@ -1,5 +1,7 @@
 import pygame, sys, random
 from pygame.locals import *
+from assets import *
+
 
 pygame.init()
 mainClock = pygame.time.Clock()
@@ -8,6 +10,10 @@ WINDOWWIDTH = 1280
 WINDOWHEIGHT = 720
 windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
 pygame.display.set_caption('The Far Lands')
+playerImage = pygame.image.load('assets/art/Brynne_Front.png')
+playerRect = playerImage.get_rect()
+
+
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -68,7 +74,7 @@ while True:
     if moveRight:
         player.right += MOVESPEED
 
-    pygame.draw.rect(windowSurface, BLUE, player)
-        
+    windowSurface.blit(playerImage, player)
+
     pygame.display.update()
     mainClock.tick(60)
