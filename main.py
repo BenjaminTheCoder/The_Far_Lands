@@ -6,8 +6,8 @@ from assets import *
 pygame.init()
 mainClock = pygame.time.Clock()
 
-WINDOWWIDTH = 1280
-WINDOWHEIGHT = 720
+WINDOWWIDTH = 800
+WINDOWHEIGHT = 600
 windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
 pygame.display.set_caption('The Far Lands')
 playerImage = pygame.image.load('assets/art/Brynne_Front.png')
